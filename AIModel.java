@@ -40,6 +40,17 @@ public abstract class AIModel implements Serializable {
     }
 
     // Core Token Validation Logic
+ /**
+     * Checks if the total tokens (input + output + system) 
+     * are within the allowed context window.
+     * 
+     * - 1 token ≈ 4 characters
+     * - Adds 50 system tokens by default
+     *
+     * @param promptText   input text
+     * @param outputTokens expected output tokens
+     * @return true if within limit, false otherwise
+     */
     public boolean calculateTokenUsage(String promptText, int outputTokens) {
 
         int inputTokens = promptText.length() / 4;   //1 token = 4 characters
